@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import SelectField from '../components/SelectField'
 import { motion } from 'framer-motion'
 
 type BookingPayload = {
@@ -17,20 +18,28 @@ const ReservePage = () => {
   const [submitting, setSubmitting] = useState(false)
   const [status, setStatus] = useState<null | { ok: boolean; message: string }>(null)
 
+  // Controlled fields for consistent behavior across environments
+  const [fullName, setFullName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+  const [duration, setDuration] = useState('1 час')
+  const [platform, setPlatform] = useState<BookingPayload['platform']>('PC')
+  const [notes, setNotes] = useState('')
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus(null)
     setSubmitting(true)
 
-    const formData = new FormData(e.currentTarget)
     const payload: BookingPayload = {
-      fullName: String(formData.get('fullName') || ''),
-      phone: String(formData.get('phone') || ''),
-      date: String(formData.get('date') || ''),
-      time: String(formData.get('time') || ''),
-      duration: String(formData.get('duration') || ''),
-      platform: (String(formData.get('platform') || 'PC') as BookingPayload['platform']),
-      notes: String(formData.get('notes') || ''),
+      fullName,
+      phone,
+      date,
+      time,
+      duration,
+      platform,
+      notes,
     }
 
     if (!payload.fullName || !payload.phone || !payload.date || !payload.time) {
@@ -54,9 +63,13 @@ const ReservePage = () => {
         } else {
           setStatus({ ok: true, message: 'Заявката е изпратена успешно! Ще се свържем скоро.' })
         }
-        if (e.currentTarget) {
-          e.currentTarget.reset()
-        }
+        setFullName('')
+        setPhone('')
+        setDate('')
+        setTime('')
+        setDuration('1 час')
+        setPlatform('PC')
+        setNotes('')
       }
     } catch (error) {
       console.error('Booking error:', error)
@@ -95,6 +108,8 @@ const ReservePage = () => {
               <label className="block text-white/90 font-medium">Име и фамилия*</label>
               <input 
                 name="fullName" 
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/50 focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200" 
                 placeholder="Иван Иванов" 
                 required 
@@ -104,6 +119,8 @@ const ReservePage = () => {
               <label className="block text-white/90 font-medium">Телефон*</label>
               <input 
                 name="phone" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/50 focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200" 
                 placeholder="08XXXXXXXX" 
                 required 
@@ -117,6 +134,8 @@ const ReservePage = () => {
               <input 
                 type="date" 
                 name="date" 
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 [color-scheme:dark]" 
                 required 
               />
@@ -126,53 +145,46 @@ const ReservePage = () => {
               <input 
                 type="time" 
                 name="time" 
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 [color-scheme:dark]" 
                 required 
               />
             </div>
-            <div className="space-y-2">
-              <label className="block text-white/90 font-medium">Продължителност</label>
-              <div className="relative">
-                <select 
-                  name="duration" 
-                  className="w-full px-4 py-3 pr-10 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 appearance-none"
-                >
-                  <option value="1 час">1 час</option>
-                  <option value="2 часа">2 часа</option>
-                  <option value="3 часа">3 часа</option>
-                  <option value="4 часа">4 часа</option>
-                  <option value="5 часа">5 часа</option>
-                </select>
-                <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
+            <SelectField
+              label="Продължителност"
+              name="duration"
+              value={duration}
+              onChange={setDuration}
+              options={[
+                { label: '1 час', value: '1 час' },
+                { label: '2 часа', value: '2 часа' },
+                { label: '3 часа', value: '3 часа' },
+                { label: '4 часа', value: '4 часа' },
+                { label: '5 часа', value: '5 часа' },
+              ]}
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="block text-white/90 font-medium">Платформа</label>
-              <div className="relative">
-                <select 
-                  name="platform" 
-                  className="w-full px-4 py-3 pr-10 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 appearance-none" 
-                  defaultValue="PC"
-                >
-                  <option value="PC">PC</option>
-                  <option value="PS5">PlayStation 5</option>
-                  <option value="Racing">Racing Симулатор</option>
-                  <option value="Other">Друго</option>
-                </select>
-                <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
+            <SelectField
+              label="Платформа"
+              name="platform"
+              value={platform}
+              onChange={(val) => setPlatform(val as BookingPayload['platform'])}
+              options={[
+                { label: 'PC', value: 'PC' },
+                { label: 'PlayStation 5', value: 'PS5' },
+                { label: 'Racing Симулатор', value: 'Racing' },
+                { label: 'Друго', value: 'Other' },
+              ]}
+            />
             <div className="space-y-2">
               <label className="block text-white/90 font-medium">Бележки</label>
               <input 
                 name="notes" 
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/50 focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200" 
                 placeholder="Брой хора, предпочитания, ..." 
               />
