@@ -68,7 +68,7 @@ const Location = () => {
             </h2>
             
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Located in the beautiful spa town of Velingrad, GB Gaming Hub offers a unique luxury gaming experience in Bulgaria's renowned wellness destination.
+              Located in the beautiful spa town of Velingrad, GB Gaming Hub offers a unique luxury gaming experience in Bulgaria&#39;s renowned wellness destination.
             </p>
 
             <div className="space-y-6">
