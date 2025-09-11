@@ -1,0 +1,28 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Gamepad2, Trophy, Zap, MapPin, Clock, Instagram } from 'lucide-react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import About from './components/About'
+import Gaming from './components/Gaming'
+import Pricing from './components/Pricing'
+import Location from './components/Location'
+import CTA from './components/CTA'
+import Footer from './components/Footer'
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-primary-black text-white">
+      <Navbar />
+      <Hero />
+      <About />
+      <Gaming />
+      <Pricing />
+      <Location />
+      <CTA />
+      <Footer />
+    </main>
+  )
+}
