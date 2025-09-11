@@ -132,32 +132,42 @@ const ReservePage = () => {
             </div>
             <div className="space-y-2">
               <label className="block text-white/90 font-medium">Продължителност</label>
-              <select 
-                name="duration" 
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200"
-              >
-                <option value="1 час">1 час</option>
-                <option value="2 часа">2 часа</option>
-                <option value="3 часа">3 часа</option>
-                <option value="4 часа">4 часа</option>
-                <option value="5 часа">5 часа</option>
-              </select>
+              <div className="relative">
+                <select 
+                  name="duration" 
+                  className="w-full px-4 py-3 pr-10 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 appearance-none"
+                >
+                  <option value="1 час">1 час</option>
+                  <option value="2 часа">2 часа</option>
+                  <option value="3 часа">3 часа</option>
+                  <option value="4 часа">4 часа</option>
+                  <option value="5 часа">5 часа</option>
+                </select>
+                <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                </svg>
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="block text-white/90 font-medium">Платформа</label>
-              <select 
-                name="platform" 
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200" 
-                defaultValue="PC"
-              >
-                <option value="PC">PC</option>
-                <option value="PS5">PlayStation 5</option>
-                <option value="Racing">Racing Симулатор</option>
-                <option value="Other">Друго</option>
-              </select>
+              <div className="relative">
+                <select 
+                  name="platform" 
+                  className="w-full px-4 py-3 pr-10 bg-white/5 border border-white/10 rounded-xl text-white focus:border-primary-green/50 focus:bg-white/10 focus:outline-none transition-all duration-200 appearance-none" 
+                  defaultValue="PC"
+                >
+                  <option value="PC">PC</option>
+                  <option value="PS5">PlayStation 5</option>
+                  <option value="Racing">Racing Симулатор</option>
+                  <option value="Other">Друго</option>
+                </select>
+                <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                </svg>
+              </div>
             </div>
             <div className="space-y-2">
               <label className="block text-white/90 font-medium">Бележки</label>
