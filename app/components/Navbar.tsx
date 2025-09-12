@@ -23,7 +23,6 @@ const Navbar = () => {
     { href: '#gaming', label: 'Игри' },
     { href: '#pricing', label: 'Цени' },
     { href: '#location', label: 'Локация' },
-    { href: '#contact', label: 'Контакт' },
   ]
 
   return (

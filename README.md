@@ -35,6 +35,8 @@ npm run dev
 │   │   ├── About.tsx
 │   │   ├── Gaming.tsx
 │   │   ├── Location.tsx
+│   │   ├── MapSection.tsx
+│   │   ├── GoogleMap.tsx
 │   │   ├── CTA.tsx
 │   │   └── Footer.tsx
 │   ├── globals.css        # Global styles

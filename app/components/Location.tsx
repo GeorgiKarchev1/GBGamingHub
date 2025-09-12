@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Instagram, ExternalLink } from 'lucide-react'
+import GoogleMap from './GoogleMap'
 
 const Location = () => {
   const locationDetails = [
@@ -54,7 +55,7 @@ const Location = () => {
   ]
 
   return (
-    <section id="location" className="py-20 bg-dark-gray">
+    <section id="location" className="py-24 bg-dark-gray mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -64,7 +65,7 @@ const Location = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-orbitron text-4xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              Find Us in Velingrad
+              Намерете ни във Велинград
             </h2>
             
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
@@ -98,50 +99,20 @@ const Location = () => {
           </motion.div>
 
           <motion.div
-            className="h-96 rounded-3xl overflow-hidden border border-primary-green/20 shadow-xl relative group"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
             whileHover={{ scale: 1.01 }}
           >
-            <iframe
-              title="GB Gaming Hub Velingrad Location"
-              className="w-full h-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-              src="https://maps.google.com/maps?ll=42.0276261,23.9876954&z=17&t=m&output=embed"
-              style={{ filter: 'contrast(1.05) saturate(0.95)' }}
+            <GoogleMap
+              height="384px"
+              showAddressChip={true}
+              showOpenButton={true}
+              address="кв. Лъджене, ул. Юндола 21"
+              coordinates={{ lat: 42.0276261, lng: 23.9876954 }}
+              zoom={19}
             />
-
-            {/* Center marker overlay (no Google info card) */}
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
-              <div className="w-6 h-6 bg-primary-green rounded-full shadow-[0_0_20px_rgba(16,185,129,0.6)]" />
-              <div className="absolute w-3 h-3 bg-primary-black rounded-full border border-primary-green/70" />
-            </div>
-
-            {/* Address chip */}
-            <div className="absolute left-4 bottom-4 z-10">
-              <div className="backdrop-blur-md bg-primary-black/60 text-white px-4 py-2 rounded-full border border-primary-green/30 shadow-lg">
-                кв. Лъджене, ул. Юндола 21
-              </div>
-            </div>
-
-            {/* Open in Google Maps button */}
-            <div className="absolute right-4 bottom-4 z-10">
-              <motion.a
-                href="https://www.google.com/maps/place/GbGaming+Hub/@42.0276261,23.9876954,17z/data=!4m14!1m7!3m6!1s0x14ab65debd1ef9a9:0x694bc20a16f1296e!2sGbGaming+Hub!8m2!3d42.0276261!4d23.9876954!16s%2Fg%2F11mdmsxkq_!3m5!1s0x14ab65debd1ef9a9:0x694bc20a16f1296e!8m2!3d42.0276261!4d23.9876954!16s%2Fg%2F11mdmsxkq_?hl=en_GB&entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-green text-primary-black font-medium shadow-lg hover:bg-accent-green transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Отвори в Maps
-                <ExternalLink size={16} />
-              </motion.a>
-            </div>
           </motion.div>
         </div>
       </div>

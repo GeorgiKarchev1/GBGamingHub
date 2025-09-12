@@ -9,7 +9,7 @@ import About from './components/About'
 import Gaming from './components/Gaming'
 import Pricing from './components/Pricing'
 import Location from './components/Location'
-import CTA from './components/CTA'
+import ReviewsSection from './components/ReviewsSection'
 import Footer from './components/Footer'
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
       <Gaming />
       <Pricing />
       <Location />
-      <CTA />
+      <ReviewsSection />
       <Footer />
     </main>
   )
