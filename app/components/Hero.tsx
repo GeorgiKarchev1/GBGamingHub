@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import TournamentNotification from './TournamentNotification'
 
 const Hero = () => {
+
   const FloatingElement = ({ delay, size, position }: { delay: number, size: string, position: string }) => (
     <motion.div
       className={`absolute ${size} bg-gradient-primary rounded-full opacity-10 ${position}`}
@@ -103,6 +105,9 @@ const Hero = () => {
           Висок FPS • Бърз интернет • Комфортна обстановка
         </motion.p>
       </div>
+
+      {/* Tournament Notification */}
+      <TournamentNotification />
     </section>
   )
 }
