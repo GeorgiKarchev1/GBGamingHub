@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,9 +19,8 @@ const Navbar = () => {
   }, [])
 
   const navItems = [
-    { href: '#home', label: 'Начало' },
     { href: '#about', label: 'За нас' },
-    { href: '#gaming', label: 'Игри' },
+    { href: '/tournaments', label: 'Турнири' },
     { href: '#pricing', label: 'Цени' },
     { href: '#location', label: 'Локация' },
   ]
@@ -38,26 +38,28 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <motion.div 
-            className="flex items-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="shrink-0">
-              <Image
-                src="/images/logoimgzala.png"
-                alt="GB Gaming Hub Logo"
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain drop-shadow-[0_4px_18px_rgba(16,185,129,0.35)]"
-                priority
-              />
-            </div>
-            <span className="font-orbitron font-bold text-xl bg-gradient-primary bg-clip-text text-transparent">
-              Gaming Hub
-            </span>
-          </motion.div>
+          <Link href="/">
+            <motion.div
+              className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="shrink-0">
+                <Image
+                  src="/images/logoimgzala.png"
+                  alt="GB Gaming Hub Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain drop-shadow-[0_4px_18px_rgba(16,185,129,0.35)]"
+                  priority
+                />
+              </div>
+              <span className="font-orbitron font-bold text-xl bg-gradient-primary bg-clip-text text-transparent">
+                Gaming Hub
+              </span>
+            </motion.div>
+          </Link>
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">

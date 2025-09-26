@@ -98,7 +98,7 @@ const Footer = () => {
 
         {/* Bottom section */}
         <motion.div
-          className="pt-8 border-t border-primary-green/10 text-center"
+          className="pt-8 border-t border-primary-green/10 text-center space-y-2"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -107,6 +107,29 @@ const Footer = () => {
           <p className="text-white/50">
             &copy; {new Date().getFullYear()} GB Gaming Hub. Всички права запазени.
           </p>
+          <div className="flex items-baseline justify-center gap-2 mt-4">
+            <span className="text-white/60 text-xl" style={{ fontFamily: 'Instrument Serif, serif' }}>
+              Built by
+            </span>
+            <a
+              href="https://karchev.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center"
+            >
+              <span
+                className="text-xl font-medium bg-gradient-to-r from-primary-green to-emerald-400 bg-clip-text text-transparent hover:from-emerald-400 hover:to-primary-green transition-all duration-300 transform group-hover:scale-105 relative"
+                style={{
+                  fontFamily: 'Instrument Serif, serif',
+                  filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.4))',
+                  textShadow: '0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.2)'
+                }}
+              >
+                Karchev
+              </span>
+              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-green to-emerald-400 group-hover:w-full transition-all duration-300"></div>
+            </a>
+          </div>
         </motion.div>
       </div>
     </footer>
